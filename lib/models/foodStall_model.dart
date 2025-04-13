@@ -30,6 +30,7 @@ List<Foodstall> foodstallList = [
     description: "Berbagai macam nasi goreng dengan bumbu spesial",
     isOpen: true,
     category: "Per-nasi-an",
+
     availableFoods: [
       Food(
         name: "Nasi Goreng Ayam Special",
@@ -174,6 +175,7 @@ List<Foodstall> foodstallList = [
     description: "Minuman segar berbagai varian",
     isOpen: true,
     category: "Minuman",
+
     availableFoods: [
       Food(
         name: "Es Teh Manis",

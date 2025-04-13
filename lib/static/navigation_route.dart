@@ -1,5 +1,6 @@
 enum NavigationRoute {
   mainRoute("/main"),
+  loginRoute("/login"),
   detailRoute("/detail"),
   cartRoute("/cart");
 
