@@ -32,7 +32,13 @@ class WelcomeTextWidget extends StatelessWidget {
               ),
             ],
           ),
-          IconButton(onPressed: onTap, icon: Icon(Icons.shopping_cart))
+          IconButton(
+              onPressed: onTap,
+              style: IconButton.styleFrom(
+                backgroundColor: Color(0xFFDFD872),
+                padding: EdgeInsets.all(10)
+              ),
+              icon: Icon(Icons.shopping_cart))
         ],
       ),
     );

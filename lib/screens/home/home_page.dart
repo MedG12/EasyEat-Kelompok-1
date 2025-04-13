@@ -1,3 +1,4 @@
+import 'package:easy_eat/providers/home_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:easy_eat/models/ads_model.dart';
@@ -10,6 +11,7 @@ import 'package:easy_eat/widgets/home/stall_card_widget.dart';
 import 'package:easy_eat/widgets/home/welcome_text_widget.dart';
 import 'package:easy_eat/widgets/home/search_bar_widget.dart';
 import 'package:easy_eat/widgets/home/category_widget.dart';
+import 'package:provider/provider.dart';
 
 Widget homePage(context, controller) {
   return CustomScrollView(
@@ -59,20 +61,26 @@ Widget homePage(context, controller) {
           ],
         ),
       ),
-      SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (context, index) {
-            final stall = foodstallList[index];
-            return StallCardWidget(
-              stall: stall,
-              onTap: () {
-                Navigator.pushNamed(context, NavigationRoute.detailRoute.name,
-                    arguments: stall);
+      Consumer<HomeProvider>(
+        builder: (context, homeProvider, child) {
+          return SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                final stall =
+                    homeProvider.stallList[index]; // Akses via provider
+                return StallCardWidget(
+                  stall: stall,
+                  onTap: () {
+                    Navigator.pushNamed(
+                        context, NavigationRoute.detailRoute.name,
+                        arguments: stall);
+                  },
+                );
               },
-            );
-          },
-          childCount: foodstallList.length,
-        ),
+              childCount: homeProvider.stallList.length, // Akses via provider
+            ),
+          );
+        },
       ),
       SliverToBoxAdapter(child: SizedBox(height: 50))
     ],
