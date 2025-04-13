@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 
-import 'package:easy_eat/models/food_model.dart';
 import 'package:easy_eat/models/foodStall_model.dart';
 import 'package:easy_eat/models/orderItem_model.dart';
 
 import 'package:intl/intl.dart';
 
-class OrderCard extends StatelessWidget {
-  const OrderCard({
+class HistoryOrderCard extends StatelessWidget {
+  const HistoryOrderCard({
     super.key,
     required this.foodStall,
     required this.stallName,
     required this.stallTotal,
     required this.items,
+    required this.isLast,
   });
 
   final Foodstall foodStall;
   final String stallName;
   final double stallTotal;
   final List<OrderItem> items;
+  final bool isLast;
 
   @override
   Widget build(BuildContext context) {
@@ -58,19 +59,18 @@ class OrderCard extends StatelessWidget {
                     // Stall Name
                     Row(
                       children: [
-                        Expanded(
-                          child: Text(
-                            stallName, // Pastikan variabel ini tersedia
-                            style: const TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            maxLines: 2,
-                            overflow:
-                                TextOverflow.ellipsis, // Handle text panjang
+                        Text(
+                          stallName, // Pastikan variabel ini tersedia
+                          style: const TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
                           ),
+                          maxLines: 2,
+                          overflow:
+                              TextOverflow.ellipsis, // Handle text panjang
                         ),
                         SizedBox(width: 5),
+                        Spacer(),
                         Padding(
                           padding: EdgeInsets.only(top: 10),
                           child: Text(
@@ -86,20 +86,18 @@ class OrderCard extends StatelessWidget {
                     ),
                     //end Stall Name
 
-                    const SizedBox(height: 5),
-
                     // Sign food status
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 8),
                       decoration: BoxDecoration(
-                        color: Color.fromRGBO(223, 216, 114, 1),
+                        color: Color(0xFFCEEBBB),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            "Makanan Sudah Jadi",
+                            "Selesai",
                             style: TextStyle(
                                 fontFamily: 'SF-Pro',
                                 fontSize: 12,
@@ -110,27 +108,43 @@ class OrderCard extends StatelessWidget {
                     ),
                     //end Sign food status
 
-                    // ordered items
-                    ...items.map(
-                      (item) => Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 4.0),
+                    const SizedBox(height: 5),
+
+                    Row(children: [
+                      Expanded(
                         child: Text(
-                          "${item.qty}x ${item.food}" +
-                              (item.selectedOption?.isNotEmpty == true
-                                  ? " (${item.selectedOption})"
-                                  : ""),
-                          overflow:
-                              TextOverflow.ellipsis, // Handle text panjang
+                          items.map((item) {
+                            return "${item.food} x${item.qty}";
+                          }).join(', '),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
                         ),
                       ),
-                    ),
-                    //end ordered items
+                      SizedBox(width: 8),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                          backgroundColor: Color(0xFFCEEBBB),
+                        ),
+                        onPressed: () {},
+                        child: Text(
+                          "Beli Lagi",
+                          style: TextStyle(
+                            fontFamily: 'SF-Pro',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ])
                   ],
                 ),
               ),
             ],
           ),
-          Divider()
+          if (!isLast) const Divider()
         ],
       ),
     );

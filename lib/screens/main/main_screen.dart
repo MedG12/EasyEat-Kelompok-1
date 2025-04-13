@@ -2,7 +2,6 @@ import 'package:easy_eat/screens/activity/activity_page.dart';
 import 'package:flutter/material.dart';
 
 import 'package:easy_eat/screens/home/home_page.dart';
-import 'package:easy_eat/screens/cart/cart_page.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 
 class MainScreen extends StatefulWidget {

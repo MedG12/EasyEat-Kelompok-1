@@ -2,7 +2,6 @@ import 'package:easy_eat/screens/activity/history_section.dart';
 import 'package:easy_eat/screens/activity/onGoing_section.dart';
 import 'package:easy_eat/static/navigation_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 
 class ActivityPage extends StatefulWidget {
   @override

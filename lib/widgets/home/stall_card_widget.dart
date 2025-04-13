@@ -44,22 +44,18 @@ class StallCardWidget extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 8),
-                ...stall.availableFoods
-                    .map(
-                      (menu) => Padding(
-                        padding: const EdgeInsets.only(bottom: 4),
-                        child: Text(
-                          "• ${menu.name}",
-                          style: const TextStyle(
-                            fontSize: 12,
-                            color: Colors.black45,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    )
-                    .toList(),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: Text(
+                    stall.description,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Color(0xFF444350),
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ],
             ),
           )
