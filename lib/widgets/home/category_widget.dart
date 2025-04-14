@@ -1,4 +1,6 @@
+import 'package:easy_eat/providers/home_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CategoryWidget extends StatefulWidget {
   final Function(String?) onCategorySelected;
@@ -11,57 +13,62 @@ class CategoryWidget extends StatefulWidget {
 
 class _CategoryWidgetState extends State<CategoryWidget> {
   final List<String> categories = [
-    'Semua', // Added 'Semua' for showing all stalls
+    'Clear filter',
     'Per-nasi-an',
     'Aneka mie',
     'Makanan kuah',
     'Minuman',
     'Snack'
   ];
+  int selectedIndex = 0;
 
   String? _selectedCategory;
 
   @override
   Widget build(BuildContext context) {
+    final homeProvider = Provider.of<HomeProvider>(context);
     return Container(
       height: 31,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: categories.length,
         itemBuilder: (context, index) {
-          final category = categories[index];
-          final isSelected = _selectedCategory == category;
-
-          return Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: InkWell(
-              onTap: () {
-                setState(() {
-                  _selectedCategory = category == 'Semua' ? null : category;
-                });
-                widget.onCategorySelected(_selectedCategory);
-              },
+          return GestureDetector(
+            onTap: () {
+              setState(() {
+                selectedIndex = index;
+              });
+              homeProvider.setFilter(categories[index]);
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(right: 8.0),
               child: Container(
                 decoration: BoxDecoration(
-                  color: isSelected
-                      ? Theme.of(context).primaryColor // Use your primary color for selected
+                  color: index == selectedIndex
+                      ? Color(0xFFD9D9D9)
                       : Color.fromRGBO(255, 255, 246, 1),
                   border: Border.all(
-                    color: Colors.black,
-                    width: 0.5,
+                    // <-- Ini yang menambahkan border
+                    color: index == selectedIndex
+                        ? Color(0xFFD9D9D9)
+                        : Colors.black45, // Warna hitam
+                    width: 0.5, // Ketebalan border
                   ),
-                  borderRadius: BorderRadius.circular(40),
+                  borderRadius: BorderRadius.circular(
+                      40), // BorderRadius juga perlu di sini
                 ),
                 padding: EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+                // color: Color.fromRGBO(255, 255, 246, 1),
                 child: Center(
                   child: Text(
-                    category,
+                    categories[index],
                     style: TextStyle(
-                      fontFamily: 'SF-Pro',
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: isSelected ? Colors.white : Colors.black,
-                    ),
+                        fontFamily: 'SF-Pro',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: index == selectedIndex
+                            ? Colors.grey
+                            : Colors.black),
                   ),
                 ),
               ),

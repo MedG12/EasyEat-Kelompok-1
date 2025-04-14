@@ -1,9 +1,9 @@
 import 'package:easy_eat/providers/activity_provider.dart';
-import 'package:easy_eat/screens/activity/onGoing_section.dart';
-import 'package:easy_eat/static/navigation_route.dart';
-import 'package:easy_eat/widgets/cart/switchWidget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import 'package:easy_eat/widgets/cart/switchWidget.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_eat/providers/cart_provider.dart';
 import 'package:easy_eat/models/orderItem_model.dart';

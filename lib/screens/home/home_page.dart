@@ -1,3 +1,4 @@
+import 'package:easy_eat/providers/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -11,6 +12,7 @@ import 'package:easy_eat/widgets/home/stall_card_widget.dart';
 import 'package:easy_eat/widgets/home/welcome_text_widget.dart';
 import 'package:easy_eat/widgets/home/search_bar_widget.dart';
 import 'package:easy_eat/widgets/home/category_widget.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -106,32 +108,32 @@ class _HomePageState extends State<HomePage> {
             ],
           ),
         ),
+      ),
+      Consumer<HomeProvider>(
+        builder: (context, homeProvider, child) {
+          return SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                final stall =
+                    homeProvider.stallList[index]; // Akses via provider
+                return StallCardWidget(
+                  stall: stall,
+                  onTap: () {
+                    Navigator.pushNamed(
+                        context, NavigationRoute.detailRoute.name,
+                        arguments: stall);
+                  },
+                );
+              },
+              childCount: homeProvider.stallList.length, // Akses via provider
+            ),
+          );
+        },
+      ),
+      SliverToBoxAdapter(child: SizedBox(height: 50))
+    ],
+  );
 
-        // Food Stall List
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              final stall = _filteredFoodStalls[index];
-              return StallCardWidget(
-                stall: stall,
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    NavigationRoute.detailRoute.name,
-                    arguments: stall,
-                  );
-                },
-              );
-            },
-            childCount: _filteredFoodStalls.length,
-          ),
-        ),
-
-        // Extra spacing at bottom
-        SliverToBoxAdapter(child: SizedBox(height: 50)),
-      ],
-    );
-  }
 }
 
 // Replace the function with the StatefulWidget in your main widget tree
