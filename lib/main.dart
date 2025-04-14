@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
             ),
         NavigationRoute.cartRoute.name: (context) => CartPage(),
         NavigationRoute.profileRoute.name: (context) => ProfilePage(),
+        NavigationRoute.profileRoute.name: (context) => ProfilePage(),
       },
     );
   }

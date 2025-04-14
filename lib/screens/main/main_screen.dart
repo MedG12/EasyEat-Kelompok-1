@@ -18,7 +18,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     currentPage = 0;
-    tabController = TabController(length: 3, vsync: this);
+    tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
 
@@ -57,17 +57,15 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
             )),
         IconButton(
             iconSize: 28,
-            onPressed: () => tabController.animateTo(2),
+            onPressed: () => Navigator.pushNamed(context, '/profile'),
             icon: Icon(
               Icons.person,
               color: Colors.black,
             )),
       ]),
-      body: (context, controller) => TabBarView(children: [
-        homePage(context, controller),
-        ActivityPage(),
-        ProfilePage(),
-      ], controller: tabController),
+      body: (context, controller) => TabBarView(
+          children: [homePage(context, controller), ActivityPage()],
+          controller: tabController),
     );
   }
 }
