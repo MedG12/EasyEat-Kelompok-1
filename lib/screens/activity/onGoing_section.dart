@@ -54,16 +54,17 @@ class OngoingSection extends StatelessWidget {
                       (stallEntry) {
                         final stallName = stallEntry.key;
                         final items = stallEntry.value;
-                        final double stallTotal = items.fold(
-                            0, (sum, item) => sum + item.price * item.qty);
+                        final double stallTotal =
+                            items.fold(0, (sum, item) => sum + item.price);
 
                         final Foodstall foodStall = foodstallList
                             .firstWhere((stall) => stall.name == stallName);
                         return OngoingOrderCard(
-                            foodStall: foodStall,
-                            stallName: stallName,
-                            stallTotal: stallTotal,
-                            items: items,);
+                          foodStall: foodStall,
+                          stallName: stallName,
+                          stallTotal: stallTotal,
+                          items: items,
+                        );
                       },
                     ),
                     // Tombol ambil

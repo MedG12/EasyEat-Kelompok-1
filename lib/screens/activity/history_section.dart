@@ -58,8 +58,8 @@ class HistorySection extends StatelessWidget {
                           final bool isLast =
                               stallsData.values.last == stallEntry.value;
                           final items = stallEntry.value;
-                          final double stallTotal = items.fold(
-                              0, (sum, item) => sum + item.price * item.qty);
+                          final double stallTotal =
+                              items.fold(0, (sum, item) => sum + item.price);
 
                           final Foodstall foodStall = foodstallList
                               .firstWhere((stall) => stall.name == stallName);
