@@ -1,3 +1,4 @@
+import 'package:easy_eat/static/navigation_route.dart';
 import 'package:flutter/material.dart';
 
 import 'package:easy_eat/models/foodStall_model.dart';
@@ -56,35 +57,42 @@ class HistoryOrderCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Stall Name
-                    Row(
-                      children: [
-                        Text(
-                          stallName, // Pastikan variabel ini tersedia
-                          style: const TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          maxLines: 2,
-                          overflow:
-                              TextOverflow.ellipsis, // Handle text panjang
-                        ),
-                        SizedBox(width: 5),
-                        Spacer(),
-                        Padding(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Text(
-                            NumberFormat.currency(
-                              locale: 'id_ID',
-                              symbol: 'Rp',
-                              decimalDigits: 0,
-                            ).format(
-                                stallTotal), // Pastikan variabel stallTotal ada
-                          ),
-                        ),
-                      ],
+                    // Modified Stall Name Row
+                    LayoutBuilder(
+                      builder: (context, constraints) {
+                        return Row(
+                          children: [
+                            Expanded(
+                              flex: 2, // 2/3 space for name
+                              child: Text(
+                                stallName,
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1, // 1/3 space for price
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: Text(
+                                  NumberFormat.currency(
+                                    locale: 'id_ID',
+                                    symbol: 'Rp',
+                                    decimalDigits: 0,
+                                  ).format(stallTotal),
+                                  textAlign: TextAlign.end,
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
                     ),
-                    //end Stall Name
+                    // End Stall Name
 
                     // Sign food status
                     Container(
@@ -127,7 +135,11 @@ class HistoryOrderCard extends StatelessWidget {
                               EdgeInsets.symmetric(horizontal: 15, vertical: 0),
                           backgroundColor: Color(0xFFCEEBBB),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(
+                              context, NavigationRoute.detailRoute.name,
+                              arguments: foodStall);
+                        },
                         child: Text(
                           "Beli Lagi",
                           style: TextStyle(

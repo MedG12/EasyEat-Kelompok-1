@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CategoryWidget extends StatefulWidget {
-  final Function(String?) onCategorySelected;
-
-  CategoryWidget({Key? key, required this.onCategorySelected}) : super(key: key);
+  CategoryWidget({Key? key}) : super(key: key);
 
   @override
   State<CategoryWidget> createState() => _CategoryWidgetState();
