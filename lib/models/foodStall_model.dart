@@ -74,7 +74,7 @@ List<Foodstall> foodstallList = [
   ),
   Foodstall(
     id: "002",
-    name: "Mie Ayam Bakso Pak Joko",
+    name: "Mie Ayam Bakso Pak Jokodo widodo",
     image: "assets/images/stall.jpg",
     description: "Mie ayam dengan bakso homemade",
     isOpen: true,

@@ -54,36 +54,42 @@ class OngoingOrderCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Stall Name
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            stallName, // Pastikan variabel ini tersedia
-                            style: const TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold,
+                    // Modified Stall Name Row
+                    LayoutBuilder(
+                      builder: (context, constraints) {
+                        return Row(
+                          children: [
+                            Expanded(
+                              flex: 2, // 2/3 space for name
+                              child: Text(
+                                stallName,
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
-                            maxLines: 2,
-                            overflow:
-                                TextOverflow.ellipsis, // Handle text panjang
-                          ),
-                        ),
-                        SizedBox(width: 5),
-                        Padding(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Text(
-                            NumberFormat.currency(
-                              locale: 'id_ID',
-                              symbol: 'Rp',
-                              decimalDigits: 0,
-                            ).format(
-                                stallTotal), // Pastikan variabel stallTotal ada
-                          ),
-                        ),
-                      ],
+                            Expanded(
+                              flex: 1, // 1/3 space for price
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: Text(
+                                  NumberFormat.currency(
+                                    locale: 'id_ID',
+                                    symbol: 'Rp',
+                                    decimalDigits: 0,
+                                  ).format(stallTotal),
+                                  textAlign: TextAlign.end,
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
                     ),
-                    //end Stall Name
+                    // End Stall Name
 
                     const SizedBox(height: 5),
 
