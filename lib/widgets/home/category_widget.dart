@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class CategoryWidget extends StatefulWidget {
-  CategoryWidget({super.key});
+  CategoryWidget({Key? key}) : super(key: key);
 
   @override
   State<CategoryWidget> createState() => _CategoryWidgetState();
@@ -19,6 +19,8 @@ class _CategoryWidgetState extends State<CategoryWidget> {
     'Snack'
   ];
   int selectedIndex = 0;
+
+  String? _selectedCategory;
 
   @override
   Widget build(BuildContext context) {

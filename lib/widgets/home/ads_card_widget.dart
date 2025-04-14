@@ -10,7 +10,7 @@ class AdsCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 300,
+        width: double.infinity,
         padding: EdgeInsets.only(right: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,

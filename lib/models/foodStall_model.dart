@@ -30,6 +30,7 @@ List<Foodstall> foodstallList = [
     description: "Berbagai macam nasi goreng dengan bumbu spesial",
     isOpen: true,
     category: "Per-nasi-an",
+
     availableFoods: [
       Food(
         name: "Nasi Goreng Ayam Special",
@@ -73,7 +74,7 @@ List<Foodstall> foodstallList = [
   ),
   Foodstall(
     id: "002",
-    name: "Mie Ayam Bakso Pak Joko",
+    name: "Mie Ayam Bakso Pak Jokodo widodo",
     image: "assets/images/stall.jpg",
     description: "Mie ayam dengan bakso homemade",
     isOpen: true,
@@ -174,6 +175,7 @@ List<Foodstall> foodstallList = [
     description: "Minuman segar berbagai varian",
     isOpen: true,
     category: "Minuman",
+
     availableFoods: [
       Food(
         name: "Es Teh Manis",

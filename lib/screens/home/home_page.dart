@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_eat/providers/home_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -42,16 +43,25 @@ Widget homePage(context, controller) {
             SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: SizedBox(
-                height: 200,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: adsList.length,
-                  itemBuilder: (context, index) {
-                    final ads = adsList[index];
-                    return AdsCardWidget(ads: ads, onTap: () {});
-                  },
+              child: CarouselSlider(
+                options: CarouselOptions(
+                  height: 200,
+                  viewportFraction: 1.0,
+                  enlargeCenterPage: true,
+                  enableInfiniteScroll: true,
+                  autoPlay: true,
+                  autoPlayInterval: Duration(seconds: 3),
                 ),
+                items: adsList.map((ads) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: AdsCardWidget(ads: ads, onTap: () {}),
+                      );
+                    },
+                  );
+                }).toList(),
               ),
             ),
             Padding(
