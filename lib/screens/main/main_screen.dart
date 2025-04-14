@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:easy_eat/screens/home/home_page.dart';
 import 'package:flutter_floating_bottom_bar/flutter_floating_bottom_bar.dart';
 
+import 'package:easy_eat/screens/profile/profile_screen.dart';
+
 class MainScreen extends StatefulWidget {
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -64,7 +66,7 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       body: (context, controller) => TabBarView(children: [
         homePage(context, controller),
         ActivityPage(),
-        Center(child: Text("Profile")),
+        ProfilePage(),
       ], controller: tabController),
     );
   }
