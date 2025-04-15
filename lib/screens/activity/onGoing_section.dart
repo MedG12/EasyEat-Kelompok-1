@@ -64,6 +64,7 @@ class OngoingSection extends StatelessWidget {
                           stallName: stallName,
                           stallTotal: stallTotal,
                           items: items,
+                          orderKey: orderKey,
                         );
                       },
                     ),
@@ -75,13 +76,22 @@ class OngoingSection extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 30, vertical: 5),
-                            backgroundColor: Color(0xffDFD872),
+                            backgroundColor:
+                                activityProvider.getRemainingTime(orderKey) == 0
+                                    ? Color(0xffDFD872)
+                                    : Colors.grey,
                           ),
-                          onPressed: () {
-                            activityProvider.moveToCompleted(orderKey);
-                          },
+                          onPressed:
+                              activityProvider.getRemainingTime(orderKey) == 0
+                                  ? () {
+                                      activityProvider
+                                          .moveToCompleted(orderKey);
+                                    }
+                                  : null,
                           child: Text(
-                            "Ambil",
+                            activityProvider.getRemainingTime(orderKey) == 0
+                                ? "Ambil"
+                                : "Tunggu",
                             style: TextStyle(
                               fontFamily: 'SF-Pro',
                               fontSize: 15,

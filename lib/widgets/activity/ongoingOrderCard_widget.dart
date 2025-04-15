@@ -1,9 +1,11 @@
+import 'package:easy_eat/providers/activity_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:easy_eat/models/foodStall_model.dart';
 import 'package:easy_eat/models/orderItem_model.dart';
 
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class OngoingOrderCard extends StatelessWidget {
   const OngoingOrderCard({
@@ -12,15 +14,18 @@ class OngoingOrderCard extends StatelessWidget {
     required this.stallName,
     required this.stallTotal,
     required this.items,
+    required this.orderKey,
   });
 
   final Foodstall foodStall;
   final String stallName;
   final double stallTotal;
   final List<OrderItem> items;
+  final String orderKey;
 
   @override
   Widget build(BuildContext context) {
+    final activityProvider = Provider.of<ActivityProvider>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Column(
@@ -97,14 +102,18 @@ class OngoingOrderCard extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 8),
                       decoration: BoxDecoration(
-                        color: Color.fromRGBO(223, 216, 114, 1),
+                        color: activityProvider.getRemainingTime(orderKey) == 0
+                            ? Color.fromRGBO(223, 216, 114, 1)
+                            : Colors.grey.shade400,
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            "Makanan Sudah Jadi",
+                            activityProvider.getRemainingTime(orderKey) == 0
+                                ? "Sudah Selesai"
+                                : "Sedang Berjalan",
                             style: TextStyle(
                                 fontFamily: 'SF-Pro',
                                 fontSize: 12,
