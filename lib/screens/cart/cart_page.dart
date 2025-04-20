@@ -100,15 +100,19 @@ class CartPage extends StatelessWidget {
                                 padding: EdgeInsets.only(top: 12, left: 20),
                                 child: Row(
                                   children: [
-                                    Text(
-                                      stallName,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontFamily: 'SF-Pro',
-                                        fontSize: 17,
+                                    Expanded(
+                                      child: Text(
+                                        stallName,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: 'SF-Pro',
+                                          fontSize: 17,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 1,
                                       ),
                                     ),
-                                    Spacer(),
+                                   SizedBox(width: 10),
                                     TextButton(
                                       onPressed: () {},
                                       child: Text(

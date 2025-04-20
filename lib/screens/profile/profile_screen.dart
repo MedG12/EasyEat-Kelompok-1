@@ -14,14 +14,14 @@
     final List<Map<String, String>> profiles = [
       {
         "name": "Muhammad",
-        "nim": "2307411036",
+        "nim": "2307411030",
         "class": "TI-4B",
         "title": "Programmer",
         "about": "he a dawg",
         "image": "assets/images/muhammad.jpeg"
       },
       {
-        "name": "Nace",
+        "name": "Naesya Qonitha",
         "nim": "2307411037",
         "class": "TI-4B",
         "title": "UI/UX Designer",
@@ -29,12 +29,12 @@
         "image": "assets/images/nace.jpg"
       },
       {
-        "name": "Parel",
-        "nim": "2307411037",
+        "name": "Farrel Jazirah Ramadhan",
+        "nim": "2307411060",
         "class": "TI-4B",
         "title": "UI/UX Designer",
         "about": "uhh idk.",
-        "image": "assets/images/farrel.jpeg"
+        "image": "assets/images/farrel.jpg"
       },
     ];
 
