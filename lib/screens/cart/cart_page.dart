@@ -98,13 +98,29 @@ class CartPage extends StatelessWidget {
                               // Header stall
                               Padding(
                                 padding: EdgeInsets.only(top: 12, left: 20),
-                                child: Text(
-                                  stallName,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontFamily: 'SF-Pro',
-                                    fontSize: 17,
-                                  ),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      stallName,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: 'SF-Pro',
+                                        fontSize: 17,
+                                      ),
+                                    ),
+                                    Spacer(),
+                                    TextButton(
+                                      onPressed: () {},
+                                      child: Text(
+                                        "Ubah Pesanan",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: 'SF-Pro',
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               // List items
@@ -286,17 +302,11 @@ class CartPage extends StatelessWidget {
 
                             // Convert cart items to format yang bisa diterima oleh activityProvider
                             final Map<String, List<OrderItem>> orderItems = {};
-
-                            // Kita gunakan key apapun karena nanti akan di-group ulang di activityProvider
                             orderItems['cart_items'] =
                                 List.from(cartProvider.items);
-
-                            // Add to ongoing orders (akan di-group by stall di provider)
                             activityProvider.addOnGoingOrder(orderItems);
-
                             // Clear cart
                             cartProvider.clearCart();
-
                             // Display SnackBar
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(

@@ -22,6 +22,7 @@ class CartProvider with ChangeNotifier {
   }
 
   List<OrderItem> get items => _items;
+
   Map<String, List<OrderItem>> get groupedItems {
     final map = <String, List<OrderItem>>{};
 
@@ -57,11 +58,6 @@ class CartProvider with ChangeNotifier {
       _items.add(newItem);
     }
     notifyListeners(); // Memberitahu UI bahwa ada perubahan
-  }
-
-  void removeItem(OrderItem item) {
-    _items.remove(item);
-    notifyListeners();
   }
 
   void clearCart() {

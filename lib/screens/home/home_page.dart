@@ -45,7 +45,7 @@ Widget homePage(context, controller) {
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: CarouselSlider(
                 options: CarouselOptions(
-                  height: 200,
+                  height: 210,
                   viewportFraction: 1.0,
                   enlargeCenterPage: true,
                   enableInfiniteScroll: true,
